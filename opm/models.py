@@ -23,7 +23,7 @@ class Profiles(db.Model):
     username = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     notes = db.Column(db.Text)
-    password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(120), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 

@@ -22,7 +22,7 @@
                   </div>
                   <div class="">
                     <h4 class="article-content text-info" style="display: inline">Password - </h4>
-                    <h4 class="article-content" style="display: inline" id="password_field">{{ profile.password }}</h4>
+                    <a class="article-content text-success" style="display: inline" href="{{ url_for('profile', profile_id=profile.id) }}">Click here to view password!</a>
                   </div>
                   <div class="">
                     <h4 class="text-center text-info">NOTES</h4>

@@ -6,6 +6,7 @@ from opm import app, db, bcrypt
 from opm.forms import RegistrationForm, LoginForm, SettingsForm, CreateProfile
 from opm.models import User , Profiles
 from flask_login import login_user, current_user, logout_user, login_required
+from opm.passcrypt import pass_encrypt, pass_dcrypt
 
 @app.route('/')
 @app.route('/dashboard')
@@ -84,7 +85,7 @@ def signout():
 def create_profile():
     form = CreateProfile()
     if form.validate_on_submit():
-        profiles = Profiles(profile_name=form.profile_name.data, username=form.username.data, password=form.password.data, email=form.email.data, notes=form.notes.data, author=current_user)
+        profiles = Profiles(profile_name=form.profile_name.data, username=form.username.data, password=pass_encrypt(form.password.data), email=form.email.data, notes=form.notes.data, author=current_user)
         db.session.add(profiles)
         db.session.commit()
         flash('Profile successfully created!', 'success')
@@ -94,6 +95,7 @@ def create_profile():
 @app.route('/profile/<int:profile_id>')
 def profile(profile_id):
     profile = Profiles.query.get_or_404(profile_id)
+    profile.password = pass_dcrypt(profile.password)
     if profile.author != current_user:
         abort(403)
     return render_template('profiles.html', title=profile.profile_name, profile=profile)
@@ -109,7 +111,7 @@ def profile_edit(profile_id):
         profile.profile_name = form.profile_name.data
         profile.username = form.username.data
         profile.email = form.email.data
-        profile.password = form.password.data
+        profile.password = pass_encrypt(form.password.data)
         profile.notes = form.notes.data
         db.session.commit()
         flash('Profile Updated Successfully!', 'success')
@@ -118,7 +120,7 @@ def profile_edit(profile_id):
         form.profile_name.data = profile.profile_name
         form.username.data = profile.username
         form.email.data = profile.email
-        form.password.data = profile.password
+        form.password.data = pass_dcrypt(profile.password)
         form.notes.data = profile.notes
     return render_template('create_profile.html', title='Edit Post', profile=profile, form=form, legend='Edit Profile')
 
