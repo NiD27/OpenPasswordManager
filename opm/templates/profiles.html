@@ -1,0 +1,53 @@
+{% extends "loggedinlayout.html" %}
+{% block content %}
+<article class="media content-section row-placement">
+  <div class="media-body">
+    <div class="article-title">
+      <h3 class="article-title text-info" style="display: inline">{{ profile.profile_name }}</h3>
+      <small class="text-muted" style="display: inline">{{ profile.date_created.strftime('%d-%m-%Y %H:%M') }}</small>
+    </div>
+    <hr>
+    <div class="">
+      <h4 class="article-content text-info" style="display: inline">Username - </h4>
+      <h4 class="article-content" style="display: inline">{{ profile.username }}</h4>
+    </div>
+    <div class="">
+      <h4 class="article-content text-info" style="display: inline">Email - </h4>
+      <h4 class="article-content" style="display: inline">{{ profile.email }}</h4>
+    </div>
+    <div class="">
+      <h4 class="article-content text-info" style="display: inline">Password - </h4>
+      <h4 class="article-content" type="password" style="display: inline">{{ profile.password }}</h4>
+    </div>
+    <div class="">
+      <h4 class="text-center text-info">NOTES</h4>
+      <p class="article-title">{{ profile.notes }}</p>
+    </div>
+    <hr>
+    <a class="btn btn-primary btn-m m-1" href="{{ url_for('profile_edit', profile_id=profile.id) }}">Edit</a>
+    <button type="button" class="btn btn-danger btn-m m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+  </div>
+</article>
+<!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Profile?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>Profile will be permanently deleted!</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+          <form class="" action="{{ url_for('profile_delete', profile_id=profile.id) }}" method="POST">
+            <input type="submit" class="btn btn-danger" name="" value="DELETE">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

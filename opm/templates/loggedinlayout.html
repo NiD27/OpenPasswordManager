@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+    {% if title %}
+      <title>{{ title }}</title>
+    {% else %}
+      <title>Open Password Manager</title>
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
+
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark custom-bg-DimGrey border-bottom border-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <div style="float:left;width:350px;height:50px">
+              <img src="{{url_for('static',filename='art/opmsqlogo.png')}}" alt="" style="float:left;width:20%;height:100%;" class="d-inline-block align-top">
+              <img src="{{url_for('static',filename='art/opmtextlogo.png')}}" alt="" style="float:left;width:80%;height:100%;" class="d-inline-block align-top">
+            </div>
+          </a>
+          <div class="">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item border border-dark custom-bg-deepskyblue">
+                <a class="nav-link active text-center" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
+              </li>
+              <li class="nav-item border border-dark custom-bg-deepskyblue">
+                <a class="nav-link active text-center" aria-current="page" href="{{ url_for('create_profile') }}">Create Profile</a>
+              </li>
+              <li class="nav-item border border-dark custom-bg-deepskyblue">
+                <a class="nav-link active text-center" href="{{ url_for('account') }}">Account</a>
+              </li>
+              </li>
+              <li class="nav-item border border-dark custom-bg-deepskyblue">
+                <a class="nav-link active text-center" href="{{ url_for('signout') }}">Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    {% block content %}{% endblock %}
+    </div>
+    <script src="{{url_for('static',filename='js/jquery-3.5.1.slim.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+  </body>
+</html>

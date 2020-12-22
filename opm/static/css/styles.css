@@ -1,0 +1,20 @@
+.custom-bg-deepskyblue{
+  background-color: deepskyblue;
+}
+.custom-bg-DimGrey{
+  background-color: DimGrey;
+}
+.custom-bg-FloralWhite{
+  background-color: FloralWhite;
+}
+.content-section {
+  background: FloralWhite;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.row-placement{
+  margin-top: 20px;
+}

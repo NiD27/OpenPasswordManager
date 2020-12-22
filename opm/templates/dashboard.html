@@ -1,0 +1,39 @@
+{% extends "loggedinlayout.html" %}
+{% block content %}
+<main role="main" class="container">
+      <div class="row row-placement">
+        <div class="col-md-8 m-auto">
+          {% for profile in profiles %}
+            {% if profile.author == current_user %}
+              <article class="media content-section">
+                <div class="media-body">
+                  <div class="article-title">
+                    <a href="{{ url_for('profile', profile_id=profile.id) }}"><h3 class="article-title text-info" style="display: inline"><u>{{ profile.profile_name }}</u></h3></a>
+                    <small class="text-muted" style="display: inline">{{ profile.date_created.strftime('%d-%m-%Y %H:%M') }}</small>
+                  </div>
+                  <hr>
+                  <div class="">
+                    <h4 class="article-content text-info" style="display: inline">Username - </h4>
+                    <h4 class="article-content" style="display: inline">{{ profile.username }}</h4>
+                  </div>
+                  <div class="">
+                    <h4 class="article-content text-info" style="display: inline">Email - </h4>
+                    <h4 class="article-content" style="display: inline">{{ profile.email }}</h4>
+                  </div>
+                  <div class="">
+                    <h4 class="article-content text-info" style="display: inline">Password - </h4>
+                    <h4 class="article-content" style="display: inline" id="password_field">{{ profile.password }}</h4>
+                  </div>
+                  <div class="">
+                    <h4 class="text-center text-info">NOTES</h4>
+                    <p class="article-title">{{ profile.notes }}</p>
+                  </div>
+                </div>
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+      </div>
+    </main>
+{% endblock content %}
