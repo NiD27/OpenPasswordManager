@@ -4,6 +4,14 @@ OPM allows the user to self-host a password manager on their own server instead 
 Flask being a lightweight library requires very low computational power while also being very scalable.
 Password are encrypted in the database.
 
+<h2>Current Features<h2>
+<h6>- Multiple users.</h6>
+<h6>- Create Profiles.</h6>
+<h6>- User-Profile Passwords are hashed using bcrypt.</h6>
+<h6>- Stored passwords are encrypted using Fernet from cryptography package</h6>
+<h6>- Passwords are decrypted only when explictly requested to view the password.</h6>
+<h6>Alert - Consider changing the key in passcrypt using "FernetGenerateKey.bat". </h6>
+  
 <h2>Installation</h3>
 <h6>- You need to inave python3 installed https://www.python.org/downloads/ download 3.9 or higher.</h6>
 <h6>- Download the ZIP/Clone.</h6>
