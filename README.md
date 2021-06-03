@@ -1,5 +1,5 @@
 # OpenPasswordManager
-OpenPasswordManager is a open source password manager, developed using Python(Flask).
+OpenPasswordManager is an open-source password manager, developed using Python(Flask).
 OPM allows the user to self-host a password manager on their own server instead of paying for a premium service.
 Flask being a lightweight library requires very low computational power while also being very scalable.
 Password are encrypted in the database.
