@@ -13,7 +13,7 @@ Password are encrypted in the database.
 <h6>Alert - Consider changing the key in "opm/passcrypt.py" using "FernetGenerateKey.bat". </h6>
   
 <h2>Installation</h3>
-<h6>- You need to inave python3 installed https://www.python.org/downloads/ download 3.9 or higher.</h6>
+<h6>- You need to have python3 installed https://www.python.org/downloads/ download 3.8 or higher.</h6>
 <h6>- Download the ZIP/Clone.</h6>
 <h6>- open "install.bat" this will open up a console and set up the environment.</h6>
 <h6>- open "start.bat" to run the server, as long as this is running  the server should be up.</h6>
